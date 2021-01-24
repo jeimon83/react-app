@@ -1,4 +1,4 @@
-const Menu = () => {
+export default function Menu() {
   return (
     <nav className="menu">
       <ul className="li-menu">
@@ -10,6 +10,5 @@ const Menu = () => {
     </nav>
   );
 }
-export default Menu;
 
 

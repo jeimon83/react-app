@@ -1,9 +1,7 @@
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const Cart = () => {
+export default function Cart() {
   return (
     <a href="#cart" className="cart"><ShoppingCartIcon/></a>
   );
 }
-
-export default Cart;
