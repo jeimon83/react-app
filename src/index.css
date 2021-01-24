@@ -7,3 +7,39 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.header-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 0.5fr;
+  border-bottom: 3px solid
+}
+.menu {
+  text-decoration: none;
+  list-style-type: none;
+}
+.li-menu {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  font-size: 18px;
+  font-weight: 500
+}
+.li-login {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 18px;
+  font-weight: 500
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  color: darkgray;
+}
+.cart {
+  padding-top: 10px
+}
+.MuiSvgIcon-root {
+  font-size: 2rem !important
+}
