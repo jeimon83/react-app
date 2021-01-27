@@ -1,4 +1,4 @@
-export default function Login() {
+const Login = () => {
   return (
     <nav className="menu">
       <ul className="li-login">
@@ -9,3 +9,5 @@ export default function Login() {
     </nav>
   );
 }
+
+export default Login;

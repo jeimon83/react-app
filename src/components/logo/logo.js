@@ -1,4 +1,6 @@
-export default function Logo() {
+import './style.css'
+
+const Logo = () => {
   return (
     <a href="#home">
       <img
@@ -10,3 +12,5 @@ export default function Logo() {
     </a>
   )
 }
+
+export default Logo;
