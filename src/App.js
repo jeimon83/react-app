@@ -6,7 +6,8 @@ import ItemListContainer from './containers/ItemListContainer.jsx';
 
 const App = () => {
   return (
-    <div>
+    <>
+    <header></header>
     <div className="header-grid">
       <Logo />
       <Menu />
@@ -14,9 +15,10 @@ const App = () => {
       <Cart />
     </div>
     <div>
-      <ItemListContainer greeting={'Bienvenido'} />
+      <ItemListContainer minStock={1}/>
     </div>
-    </div>
+    <footer></footer>
+    </>
   );
 }
 
