@@ -1,7 +1,6 @@
-import Logo from './components/logo/logo.js';
-import Menu from './components/navbar/menu.js';
-import Cart from './components/cart/cart.js';
-import Login from './components/navbar/login.js';
+import StickyFooter from "./components/footer/footer.js";
+import Navbar from "./components/navbar/navbar.js";
+import TestBar from "./components/testbar/testbar.js";
 import ItemListContainer from './containers/ItemListContainer.jsx';
 
 const App = () => {
@@ -9,15 +8,13 @@ const App = () => {
     <>
     <header></header>
     <div className="header-grid">
-      <Logo />
-      <Menu />
-      <Login />
-      <Cart />
+      <Navbar />
     </div>
     <div>
-      <ItemListContainer minStock={1}/>
+      <ItemListContainer minStock={1} />
     </div>
-    <footer></footer>
+    
+    {/* <TestBar /> */}
     </>
   );
 }

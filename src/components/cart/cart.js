@@ -1,4 +1,5 @@
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import './style.css'
 
 const Cart = () => {
   return (
