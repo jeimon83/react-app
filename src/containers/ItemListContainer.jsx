@@ -1,17 +1,6 @@
-import productList from '../mocks/productList'
-import React, { useState, useEffect } from 'react';
 import ItemCount from '../components/itemcount/ItemCount';
 
 const ItemListContainer = () => {  
-
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    const myPromise = new Promise((resolve) => {
-      setTimeout(() => resolve(productList), 2000);
-    });
-    myPromise.then((result) => setProducts(result));
-  }, [])
 
   return (
     <>
