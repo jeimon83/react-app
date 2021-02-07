@@ -4,7 +4,7 @@ import {Typography, Grid, Card, CardActionArea, CardMedia} from "@material-ui/co
 import {CardContent, CardActions, Button, Dialog, AppBar} from "@material-ui/core";
 import {IconButton, List, ListItem, ListItemText, Toolbar} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
-import useStyles from './useStyles';
+import useStyles from '../containers/useStyles';
 import './style.css'
 
 const ItemListContainer = (props) => {
