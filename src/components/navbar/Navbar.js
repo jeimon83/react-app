@@ -1,7 +1,7 @@
-import Cart from "../cart/Cart";
-import Logo from "../logo/Logo";
-import Login from "../login/Login";
-import Menu from "../menu/Menu";
+import Cart  from  "../cart/Cart";
+import Logo  from  "../logo/Logo";
+import Login from  "../login/Login";
+import Menu  from  "../menu/Menu";
 
 const Navbar = () => {
   return (

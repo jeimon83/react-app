@@ -1,10 +1,21 @@
-import ItemCount from '../components/itemcount/ItemCount';
+import * as React from "react";
+import productList from "../mocks/productList";
+import ItemList from "../components/itemlist/ItemList";
 
-const ItemListContainer = () => {  
+const ItemListContainer = () => {
+  const [products, setProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    const myPromise = new Promise((resolve) => {
+      setTimeout(() => resolve(productList), 2000);
+    });
+
+    myPromise.then((result) => setProducts(result));
+  }, []);
 
   return (
     <>
-      <ItemCount stock={4} initial={1} />
+      <ItemList products={products} />
     </>
   );
 }

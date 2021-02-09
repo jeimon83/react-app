@@ -1,0 +1,13 @@
+.card {
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  width: 350px;
+}
+
+.title {
+  padding-left: 10px;
+}
+
+.price {
+  padding-left: 10px;
+}
