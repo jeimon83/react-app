@@ -1,5 +1,5 @@
 .products-grid {
   display: grid;
-  grid-template-columns: 3fr 3fr;
-  list-style-type: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style-type: none;  
 }

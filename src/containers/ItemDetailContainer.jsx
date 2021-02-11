@@ -2,15 +2,22 @@ import * as React from "react";
 import productList from "../mocks/productList";
 import ItemList from "../components/itemlist/ItemList";
 
-const ItemListContainer = () => {
+/* const mostrarAlert = () => {
+  console.log("hola");
+} */
+
+const ItemDetailContainer = () => {
+  //window.addEventListener("click", mostrarAlert);  
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
     const myPromise = new Promise((resolve) => {
-      setTimeout(() => resolve(productList), 2000);
+      setTimeout(() => resolve(productList));
     });
 
     myPromise.then((result) => setProducts(result));
+    
+    //window.removeEventListener("click", mostrarAlert);
   }, []);
 
   return (
@@ -20,7 +27,7 @@ const ItemListContainer = () => {
   );
 }
 
-export default ItemListContainer;
+export default ItemDetailContainer;
 
 
 

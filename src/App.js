@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from "./components/navbar/Navbar.js";
-import ItemListContainer from './containers/ItemListContainer';
+import ItemDetailContainer from './containers/ItemDetailContainer';
 
 const App = () => {
+/*   const mostrarEvento = (e) => {
+    console.log(e);
+  } */
+
   return (
     <BrowserRouter>
       <div className="header-grid">
@@ -11,10 +15,11 @@ const App = () => {
       </div>
       <Switch>
         <Route exact path="/">
-          <ItemListContainer minStock={1} />
+          <ItemDetailContainer />
         </Route>
         <Route path="*" children={<div>Not found</div>}></Route>
       </Switch>
+      {/* <button onClick={mostrarEvento}>Evento</button> */}
     </BrowserRouter>
   );
 }
