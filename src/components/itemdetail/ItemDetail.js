@@ -1,3 +1,18 @@
+import Card from "@material-ui/core/Card";
+import './style.css'
+
+const ItemDetail = () => {
+  return (
+    <>
+      <Card>
+        DETALLE DEL ITEM
+      </Card>
+    </>
+  )
+}
+
+export default ItemDetail;
+
 // aca va el detalle del item
 // acá adentro debería ir el counter
 // el más y el menos mandan eventos al padre "quiero restar/sumar uno" y se lo manda como prop
@@ -22,5 +37,3 @@
 // el padre va a manejar todos los states
 
 // <ItemDetail setInitial=[setCounter] />
-
-//
