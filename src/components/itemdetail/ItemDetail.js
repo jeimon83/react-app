@@ -1,11 +1,40 @@
 import Card from "@material-ui/core/Card";
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import { useParams } from "react-router-dom";
+import productList from "../../mocks/productList";
+
 import './style.css'
 
 const ItemDetail = () => {
+
+  const {handle} = useParams();
+
+  const found = productList.find(element => element.handle === handle);
+  console.log(found)
+
   return (
     <>
       <Card>
-        DETALLE DEL ITEM
+        <CardActionArea>
+          <CardMedia
+            className='img-container'
+            image={`../${found.img}`}
+            title={handle}
+          />
+        </CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
       </Card>
     </>
   )
