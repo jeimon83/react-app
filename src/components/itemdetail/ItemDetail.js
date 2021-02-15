@@ -51,7 +51,7 @@ const ItemDetail = () => {
             <IconButton aria-label='add' onClick={handleAdd} >
               <AddIcon className='add' />
             </IconButton>
-            <p>
+            <p className="addcart">
               <Button variant="contained" color="secondary" disableElevation>
                 Add to cart
               </Button>
