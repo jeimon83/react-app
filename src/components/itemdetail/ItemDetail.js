@@ -1,33 +1,25 @@
 import {Container, Row, Col} from 'react-bootstrap'
-import { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useParams } from 'react-router-dom'
 import productList from "../../mocks/productList"
-import IconButton from '@material-ui/core/IconButton'
-import AddIcon    from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
 import Button from '@material-ui/core/Button';
-
 import './style.css'
+import ItemCount from '../itemcount/ItemCount'
+
 
 const ItemDetail = () => {
+  const [item, setItem] = useState([])
+  const { handle } = useParams()
 
-  const {handle} = useParams()
-
-  const [count, setCount] = useState(1)
-
-  const handleAdd = () => {
-    if (count < item.inventory) {
-      setCount(count + 1);
-    }
-  };
-
-  const handleSub = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  const item = productList.find(element => element.handle === handle)
+  useEffect(() => {
+    const myPromise = new Promise((resolve) => {
+      const item = productList.find(element => element.handle === handle)
+      if (item) {
+        resolve(item)
+      }
+    })
+    myPromise.then((result) => setItem(result))
+  }, [handle]);
 
   return (
     <>
@@ -37,20 +29,14 @@ const ItemDetail = () => {
           <img
               className='img-container'
               src={`../${item.img}`}
-              alt={handle}
+              alt="hola"
             />
           </Col>
           <Col sm={8} className="title">
             <p>{item.title}</p>
             <p>{item.description}</p>
             <p>$ {item.price}</p>
-            <IconButton aria-label='sub' onClick={handleSub} >
-              <RemoveIcon className='remove' />
-            </IconButton>
-            <b style={{ fontSize: "20px" }}>{count}</b>
-            <IconButton aria-label='add' onClick={handleAdd} >
-              <AddIcon className='add' />
-            </IconButton>
+            <ItemCount stock={item.inventory} initial={1} />
             <p className="addcart">
               <Button variant="contained" color="secondary" disableElevation>
                 Add to cart

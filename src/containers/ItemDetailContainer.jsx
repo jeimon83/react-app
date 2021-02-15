@@ -1,12 +1,12 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import productList from "../mocks/productList";
 import ItemList from "../components/itemlist/ItemList";
 
 const ItemDetailContainer = () => {
 
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const myPromise = new Promise((resolve) => {
       setTimeout(() => resolve(productList));
     });
