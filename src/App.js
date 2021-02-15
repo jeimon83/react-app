@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar/Navbar.js";
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import ItemDetail from './components/itemdetail/ItemDetail';
+import Cart from './components/cart/Cart';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path = "/:category/:handle" >
           <ItemDetail />
         </Route>
+        <Route exact path = "/cart" component={Cart} />
         <Route path="*" children={<div>Not found</div>} />
       </Switch>
       {/* <button onClick={mostrarEvento}>Evento</button> */}
