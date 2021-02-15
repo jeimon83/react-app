@@ -6,7 +6,7 @@ const Logo = () => {
     <Link to="/">
       <img
         className="logo"
-        src="images/logo.png"
+        src="images/logo-padel-store.png"
         href="#home"
         alt="logo">
       </img>

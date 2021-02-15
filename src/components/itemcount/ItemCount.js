@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import './style.css'
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon    from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+import IconButton from '@material-ui/core/IconButton'
+import AddIcon    from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 const ItemCount = ({ stock, initial }) => { 
 
-  const [count, setCount] = useState(initial); // seteamos el contador en 1
+  const [count, setCount] = useState(initial)
 
   const handleAdd = () => {
     if (count < stock) {
-      setCount(count + 1);
+      setCount(count + 1)
     }
   };
 
   const handleSub = () => {
     if (count > initial) {
-      setCount(count - 1);
+      setCount(count - 1)
     }
   };
 
@@ -33,4 +33,4 @@ const ItemCount = ({ stock, initial }) => {
   );
 };
 
-export default ItemCount;
+export default ItemCount

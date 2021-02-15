@@ -26,6 +26,36 @@ const productList = [
     price: 25000, 
     inventory: 4,
     category: 'paddles'
+  },
+  { 
+    id: 4, 
+    title: "Siux Velvet Importada",
+    description: "Paleta Siux Velvet Importada",
+    handle: "siux-velvet-importada",
+    img: "images/siux-velvet-importada.png", 
+    price: 32000, 
+    inventory: 5,
+    category: 'paddles'
+  },
+  { 
+    id: 5, 
+    title: "Davor 10 United",
+    description: "Paleta Davor 10 United",
+    handle: "paleta-davor-10",
+    img: "images/paleta-davor-10.png", 
+    price: 65000, 
+    inventory: 2,
+    category: 'paddles'
+  },
+  { 
+    id: 6, 
+    title: "Mirage Coast Play Hard",
+    description: "Paleta Mirage Coast Play Hard",
+    handle: "mirage-coast-playhard",
+    img: "images/mirage-coast-playhard.png", 
+    price: 13600, 
+    inventory: 7,
+    category: 'paddles'
   }
 ]
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar/Navbar.js";
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import ItemDetail from './components/itemdetail/ItemDetail';

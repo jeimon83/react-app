@@ -1,7 +1,20 @@
 .img-container {
-  margin-left: 40px;
   margin-top: 20px;
   margin-bottom: 20px;
   width: 140px;
-  height: 245px 
+  height: 240px;
+}
+.col {
+  text-align: center;
+}
+.title{
+  padding-top: 20px;
+}
+.remove {
+  color: white;
+  background: blue;
+}
+.add {
+  color: white;
+  background: blue;
 }

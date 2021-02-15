@@ -9,12 +9,14 @@ body {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 0.5fr;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 .menu {
   text-decoration: none;
   list-style-type: none;
 }
 .li-menu {
+  padding-top: 4px;
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

@@ -22,6 +22,3 @@ const Item = ({product}) => {
 }
 
 export default Item;
-
-//import ItemCount from '../itemcount/ItemCount'
-//<ItemCount stock={product.inventory} initial={1} />

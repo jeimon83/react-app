@@ -3,11 +3,16 @@
   padding-bottom: 20px;
   margin: 10px 40px;
 }
-.title {
-  margin-bottom: -15px;
-}
 .image {
   width: 140px;
   height: 245px;
   margin-bottom: 5px;
-};
+}
+.title{
+  font-size: 18px;
+  color: black;
+}
+.price{
+  font-size: 18px;
+  color: black;
+}

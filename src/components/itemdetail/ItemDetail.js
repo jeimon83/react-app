@@ -1,68 +1,66 @@
-import Card from "@material-ui/core/Card";
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import { useParams } from "react-router-dom";
-import productList from "../../mocks/productList";
+import {Container, Row, Col} from 'react-bootstrap'
+import { useState } from "react"
+import { useParams } from "react-router-dom"
+import productList from "../../mocks/productList"
+import IconButton from '@material-ui/core/IconButton'
+import AddIcon    from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import Button from '@material-ui/core/Button';
 
 import './style.css'
 
 const ItemDetail = () => {
 
-  const {handle} = useParams();
+  const {handle} = useParams()
 
-  const found = productList.find(element => element.handle === handle);
-  console.log(found)
+  const [count, setCount] = useState(1)
+
+  const handleAdd = () => {
+    if (count < item.inventory) {
+      setCount(count + 1);
+    }
+  };
+
+  const handleSub = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
+  const item = productList.find(element => element.handle === handle)
 
   return (
     <>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            className='img-container'
-            image={`../${found.img}`}
-            title={handle}
-          />
-        </CardActionArea>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </Card>
+      <Container>
+        <Row>
+          <Col sm={4} className="col">
+          <img
+              className='img-container'
+              src={`../${item.img}`}
+              alt={handle}
+            />
+          </Col>
+          <Col sm={8} className="title">
+            <p>{item.title}</p>
+            <p>{item.description}</p>
+            <p>$ {item.price}</p>
+            <IconButton aria-label='sub' onClick={handleSub} >
+              <RemoveIcon className='remove' />
+            </IconButton>
+            <b style={{ fontSize: "20px" }}>{count}</b>
+            <IconButton aria-label='add' onClick={handleAdd} >
+              <AddIcon className='add' />
+            </IconButton>
+            <p>
+              <Button variant="contained" color="secondary" disableElevation>
+                Add to cart
+              </Button>
+            </p>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }
 
-export default ItemDetail;
-
-// aca va el detalle del item
-// acá adentro debería ir el counter
-// el más y el menos mandan eventos al padre "quiero restar/sumar uno" y se lo manda como prop
-// el nro/stock que aparece al principio viene del padre, variable "initial" --> sería useState(initial)
-// el total del stock viene del padre, variable "stock"
-// counter es el hijo
-// el padre sería toda la ventana
-// el botón agregar al carrito es un hijo
-
-// el botón agregar carrito tiene que cambiar a terminar compra 
-// si llega al máximo de stock con el botón más
-
-// {isBottonAdd ? <div>Agregar carrito</div : <h2>Terminar compra</h2>
-// el botón terminar compra te debería llevar al checkout
-// {seAgregoProducto ? <TerminarCompra/> : <AgregarAlCarrito/>} 
-
-// el counter no hace nada, la lógica está en el padre
-// initial empieza en uno y se lo manda al componente
-// el onClick del menos y mas llama a setInitial
-
-// el state del counter hay que mandárselo al padre.
-// el padre va a manejar todos los states
-
-// <ItemDetail setInitial=[setCounter] />
+export default ItemDetail
