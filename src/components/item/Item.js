@@ -7,13 +7,7 @@ const Item = ({product}) => {
 
   return (
     <Card className="card">
-      <Link to={
-        {
-          pathname: `/${product.category}/${product.handle}`,
-          state: product
-        }
-      }
-      >
+      <Link to={{ pathname: `/${product.category}/${product.handle}`, state: product }}>
         <h4 className="title">{product.title}</h4>
         <h4 className="price">${product.price}</h4>
         <div>

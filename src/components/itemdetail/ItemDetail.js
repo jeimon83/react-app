@@ -77,7 +77,6 @@ const ItemDetail = () => {
             <p className="addcart">
               { buyButton ? <AddtoCartBtn /> : <CheckoutBtn /> }
             </p>
-            <ItemCount stock={item.inventory} initial={1} />
           </Col>
         </Row>
       </Container>

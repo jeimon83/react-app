@@ -18,14 +18,14 @@ const productList = [
     category: 'paddles'
   },
   { 
-    id: 3, 
-    title: "Bullpadel Heat Eva 2020",
-    description: "Paleta de Padel Bullpadel Heat Eva 2020",
-    handle: "bullpadel-heat-eva-2020",
-    img: "images/bullpadel-heat-eva.png", 
-    price: 25000, 
+    id: 10,
+    title: "Canasto Recolector",
+    description: "Canasto Recolector para 100 Pelotas",
+    handle: "canasto-recolector-100-pelotas",
+    img: "images/canasto-100-pelotas.png", 
+    price: 4500, 
     inventory: 4,
-    category: 'paddles'
+    category: 'others'
   },
   { 
     id: 4, 
@@ -38,14 +38,14 @@ const productList = [
     category: 'paddles'
   },
   { 
-    id: 5, 
-    title: "Davor 10 United",
-    description: "Paleta Davor 10 United",
-    handle: "paleta-davor-10",
-    img: "images/paleta-davor-10.png", 
-    price: 65000, 
-    inventory: 2,
-    category: 'paddles'
+    id: 9, 
+    title: "Wilson Kaos 3.0",
+    description: "Zapatilla de Padel Wilson Kaos 3.0",
+    handle: "wilson-kaos-3",
+    img: "images/wilson-kaos-3.png", 
+    price: 17000, 
+    inventory: 9,
+    category: 'sneakers'
   },
   { 
     id: 6, 
@@ -56,6 +56,46 @@ const productList = [
     price: 13600, 
     inventory: 7,
     category: 'paddles'
+  },
+  { 
+    id: 7, 
+    title: "Davor 10 United",
+    description: "Paleta Davor 10 United",
+    handle: "paleta-davor-10",
+    img: "images/paleta-davor-10.png", 
+    price: 65000, 
+    inventory: 2,
+    category: 'paddles'
+  },
+  { 
+    id: 8, 
+    title: "Bullpadel Heat Eva 2020",
+    description: "Paleta de Padel Bullpadel Heat Eva 2020",
+    handle: "bullpadel-heat-eva-2020",
+    img: "images/bullpadel-heat-eva.png", 
+    price: 25000, 
+    inventory: 4,
+    category: 'paddles'
+  },
+  { 
+    id: 3, 
+    title: "Remera Babolat",
+    description: "Remera de Padel Babolat Verde",
+    handle: "remera-babolat-verde",
+    img: "images/remera-babolat-verde.png", 
+    price: 2150, 
+    inventory: 4,
+    category: 'others'
+  },
+  { 
+    id: 5, 
+    title: "Wilson Rush Pro",
+    description: "Zapatillas Wilson Rush Pro",
+    handle: "wilson-rush-pro",
+    img: "images/wilson-rush-pro.png", 
+    price: 20999, 
+    inventory: 7,
+    category: 'sneakers'
   }
 ]
 

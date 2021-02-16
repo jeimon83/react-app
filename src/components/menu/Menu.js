@@ -4,10 +4,10 @@ const Menu = () => {
   return (
     <nav >
       <ul className="li-menu">
-        <li><Link to="/" className="link">Home</Link></li>
-        <li><a className="link" href="#paddle">Paddles</a></li>
-        <li><a className="link" href="#sneakers">Sneakers</a></li>
-        <li><a className="link" href="#others">Others</a></li>
+        <li><Link to="/"         className="link">Home     </Link></li>
+        <li><Link to="/paddles"  className="link">Paddles  </Link></li>
+        <li><Link to="/sneakers" className="link">Sneakers </Link></li>
+        <li><Link to="/others"   className="link">Others   </Link></li>
       </ul>
     </nav>
   );
