@@ -23,7 +23,6 @@ const App = () => {
         <Route exact path = "/cart" component={Cart} />
         <Route path="*" children={<div>Not found</div>} />
       </Switch>
-      {/* <button onClick={mostrarEvento}>Evento</button> */}
       <footer></footer>
     </BrowserRouter>
   );

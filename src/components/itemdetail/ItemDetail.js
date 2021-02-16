@@ -1,20 +1,24 @@
 import {Container, Row, Col} from 'react-bootstrap'
 import { useEffect, useState } from "react"
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon    from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import productList from '../../mocks/productList'
 import AddtoCartBtn from '../addtocartbtn/AddtoCartBtn'
 import CheckoutBtn from '../checkoutbtn/CheckoutBtn'
+import ItemCount from '../itemcount/ItemCount'
 import './style.css'
 
+
 const ItemDetail = () => {
+  const location = useLocation();
   const [item, setItem] = useState([])
   const { handle } = useParams()
   const [count, setCount] = useState(1)
   const [buyButton, setbuyButton] = useState(true);
   
+
   const handleAdd = () => {
     if (count < item.inventory) {
       setCount(count + 1);
@@ -38,14 +42,15 @@ const ItemDetail = () => {
   useEffect(() => { but(count) })
 
   useEffect(() => {
+    const product = location.state;
     const myPromise = new Promise((resolve) => {
       const item = productList.find(element => element.handle === handle)
-      if (item) {
+      if ( product.id === item.id) {
         resolve(item)
       }
     })
     myPromise.then((result) => setItem(result))
-  }, [handle]);
+  }, [handle, location.state]);
 
   return (
     <>
@@ -72,6 +77,7 @@ const ItemDetail = () => {
             <p className="addcart">
               { buyButton ? <AddtoCartBtn /> : <CheckoutBtn /> }
             </p>
+            <ItemCount stock={item.inventory} initial={1} />
           </Col>
         </Row>
       </Container>

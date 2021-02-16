@@ -4,18 +4,18 @@ import IconButton from '@material-ui/core/IconButton'
 import AddIcon    from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 
-const ItemCount = ({ stock, initial }) => { 
+const ItemCount = (props) => { 
   
-  const [count, setCount] = useState(initial)
+  const [count, setCount] = useState(props.initial)
 
   const handleAdd = () => {
-    if (count < stock) {
+    if (count < props.stock) {
       setCount(count + 1)
     }
   };
 
   const handleSub = () => {
-    if (count > initial) {
+    if (count > props.initial) {
       setCount(count - 1)
     }
   };
