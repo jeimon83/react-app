@@ -7,8 +7,8 @@ import RemoveIcon from '@material-ui/icons/Remove'
 import productList from '../../mocks/productList'
 import AddtoCartBtn from '../addtocartbtn/AddtoCartBtn'
 import CheckoutBtn from '../checkoutbtn/CheckoutBtn'
-import ItemCount from '../itemcount/ItemCount'
 import './style.css'
+import RelatedProducts from '../relatedproducts/RelatedProducts'
 
 
 const ItemDetail = () => {
@@ -54,16 +54,17 @@ const ItemDetail = () => {
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col sm={4} className="col">
+      <Container fluid className="item-detail">
+        <Row className="row-height" >
+          <Col></Col>
+          <Col className="col row-height">
           <img
               className='img-container'
               src={`../${item.img}`}
               alt="hola"
             />
           </Col>
-          <Col sm={8} className="title">
+          <Col className="title row-height">
             <p>{item.title}</p>
             <p>{item.description}</p>
             <p>$ {item.price}</p>
@@ -78,7 +79,11 @@ const ItemDetail = () => {
               { buyButton ? <AddtoCartBtn /> : <CheckoutBtn /> }
             </p>
           </Col>
+          <Col></Col>
         </Row>
+        <div className="related-products">
+          <RelatedProducts />
+        </div>
       </Container>
     </>
   )

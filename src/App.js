@@ -6,6 +6,7 @@ import ItemDetailContainer from './containers/ItemDetailContainer';
 import ItemCategoryContainer from './containers/ItemCategoryContainer';
 import ItemDetail from './components/itemdetail/ItemDetail';
 import Cart from './components/cart/Cart';
+import Footer from './components/footer/footer.js';
 
 const App = () => {
 
@@ -27,7 +28,6 @@ const App = () => {
         <Route exact path = "/cart" component={Cart} />
         <Route path="*" children={<div>Not found</div>} />
       </Switch>
-      <footer></footer>
     </BrowserRouter>
   );
 }

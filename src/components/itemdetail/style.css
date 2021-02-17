@@ -1,8 +1,11 @@
+.item-detail {
+  margin-top: 60px;
+}
 .img-container {
   margin-top: 20px;
   margin-bottom: 20px;
   width: auto;
-  height:60%;
+  height:80%;
 }
 .col {
   text-align: center;
@@ -20,4 +23,8 @@
 }
 .addcart{
   padding-top: 12px;
+}
+
+.row-height {
+  height: 350px;
 }

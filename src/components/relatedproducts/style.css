@@ -1,0 +1,16 @@
+.title-related {
+  font-size: 16px;
+  color:  #3C1874;
+  padding-top: 15px;
+}
+.price-related {
+  font-size: 16px;
+  color: #3C1874;
+  padding-bottom: 15px;
+}
+
+.image {
+  width: auto;
+  height: 120px;
+  margin-bottom: 5px;
+}
