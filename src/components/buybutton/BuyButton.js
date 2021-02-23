@@ -1,12 +1,12 @@
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 
-const CheckoutBtn = () => { 
+const BuyButton = () => { 
   
   return (
     <>
       <Link to="/cart">
-        <Button variant="contained" color="secondary" disableElevation >
+        <Button variant="contained" color="primary" disableElevation >
           Checkout
         </Button>
       </Link>
@@ -14,4 +14,4 @@ const CheckoutBtn = () => {
   );
 };
 
-export default CheckoutBtn
+export default BuyButton

@@ -24,6 +24,10 @@
 .addcart{
   padding-top: 12px;
 }
+.buy-button{
+  padding-top: 12px;
+  color: blue;
+}
 
 .row-height {
   height: 350px;
