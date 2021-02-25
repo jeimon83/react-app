@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button'
 import AddIcon    from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import productList from '../../mocks/productList'
-import BuyButton from '../buybutton/BuyButton'
 import RelatedProducts from '../relatedproducts/RelatedProducts'
+import { useCartContext } from "../../context/CartContext.js";
+import { Link } from 'react-router-dom'
 import './style.css'
 
 const ItemDetail = () => {
@@ -15,7 +16,12 @@ const ItemDetail = () => {
   const [item, setItem] = useState([])
   const { handle } = useParams()
   const [count, setCount] = useState(1)
+  const { productsAdd } = useCartContext();
   const [enable, setEnable] = useState(false);
+
+  const onAdd = () => {
+    productsAdd({ id: item.id, title: item.title, count });
+  };
   
   const handleAdd = () => {
     if (count < item.inventory) {
@@ -70,9 +76,13 @@ const ItemDetail = () => {
               Add to cart
             </Button>
             </p>
-            <p>
-            { enable ? <BuyButton /> : null }
-            </p>
+             { enable ?
+              <Link to="/cart">
+                <button onClick={onAdd}>Comprar</button>
+              </Link>
+              :
+              null
+            }
           </Col>
           <Col></Col>
         </Row>

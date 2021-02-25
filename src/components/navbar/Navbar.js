@@ -1,7 +1,8 @@
-import Cart  from  "../cart/Cart";
 import Logo  from  "../logo/Logo";
 import Login from  "../login/Login";
 import Menu  from  "../menu/Menu";
+import { Link } from 'react-router-dom'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'; 
 
 const Navbar = () => {
   return (
@@ -9,7 +10,9 @@ const Navbar = () => {
       <Logo />
       <Menu />
       <Login />
-      <Cart />
+      <Link to="/cart">
+      <p className="cart"><ShoppingCartIcon/></p>
+      </Link>
     </>
   );
 }

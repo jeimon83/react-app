@@ -1,11 +1,17 @@
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'; 
+import React from "react";
+import { useCartContext } from "../../context/CartContext.js";
 import './style.css'
 
 const Cart = () => {
-
+  const { list } = useCartContext();
+  console.log(list)
   return (
     <>
-      <a href="#cart" className="cart"><ShoppingCartIcon/></a>
+      {list.map((item, key) => (
+        <div key={key}>
+          {item.count} Producto:{item.name}
+        </div>
+      ))}
     </>
   );
 }

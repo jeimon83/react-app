@@ -2,5 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 0.5fr;
   border-bottom: 3px solid;
-  
+}
+.cart {
+  color: black !important
 }

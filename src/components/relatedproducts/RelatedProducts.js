@@ -21,7 +21,7 @@ const RelatedProducts = () => {
 
   return (
     <>
-      <h3 style={{ "text-align": "center" }}>Related Products</h3>
+      <h3 style={{ "textAlign": "center" }}>Related Products</h3>
       <div style={{ "width": "100%" }}>
         {relatedItems.map( relatedItem => 
           <div key={relatedItem.id} style={{ "width" : "25%", "float" : "left" }}>
