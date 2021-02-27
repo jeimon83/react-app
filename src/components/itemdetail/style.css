@@ -28,7 +28,18 @@
   padding-top: 12px;
   color: blue;
 }
-
 .row-height {
   height: 350px;
+}
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.paper {
+  background-color:white;
+  border: 3px solid blue;
+  border-radius: 6%;
+  padding: 20px;
+  text-align: center;
 }

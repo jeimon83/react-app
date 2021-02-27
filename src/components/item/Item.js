@@ -1,9 +1,18 @@
 import Button from '@material-ui/core/Button';
 import Card from "@material-ui/core/Card";
 import { Link } from 'react-router-dom';
+import { useCartContext } from "../../context/CartContext.js";
 import './style.css'
 
 const Item = ({product}) => {
+
+  const count = 1
+  const { productsAdd } = useCartContext();
+
+  const onAdd = () => {
+    console.log("Se agregaron", count, "productos al carrito");
+    productsAdd({ id: product.id, title: product.title, count });
+  };
 
   return (
     <Card className="card">
@@ -13,10 +22,15 @@ const Item = ({product}) => {
         <div>
           <img alt="product" src={product.img} className="image" />
         </div>
-        <Button variant="contained" color="secondary" disableElevation>
-          Buy
+        <Button variant="contained" color="primary" disableElevation>
+          Details
         </Button>
       </Link>
+      <div className="add-cart">
+      <Button variant="contained" color="secondary" disableElevation onClick={onAdd}>
+        Add to Cart
+      </Button>
+      </div>
     </Card>
   )
 }

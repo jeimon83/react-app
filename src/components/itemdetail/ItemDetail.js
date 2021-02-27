@@ -20,7 +20,8 @@ const ItemDetail = () => {
   const [enable, setEnable] = useState(false);
 
   const onAdd = () => {
-    productsAdd({ id: item.id, title: item.title, count });
+    console.log("Se agregaron", count, "productos al carrito");
+    productsAdd({ id: item.id, title: item.title, price: item.price, count });
   };
   
   const handleAdd = () => {
@@ -35,7 +36,10 @@ const ItemDetail = () => {
     }
   }
 
-  const enableBuyButton = () => { setEnable(true) }
+  const enableBuyButton = () => { 
+    setEnable(true)
+    onAdd()
+  }
 
   useEffect(() => {
     const product = location.state;
@@ -78,7 +82,9 @@ const ItemDetail = () => {
             </p>
              { enable ?
               <Link to="/cart">
-                <button onClick={onAdd}>Comprar</button>
+                <Button variant="contained" color="primary" disableElevation >
+                  Finish Buy
+                </Button>
               </Link>
               :
               null

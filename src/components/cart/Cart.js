@@ -1,18 +1,18 @@
-import React from "react";
-import { useCartContext } from "../../context/CartContext.js";
+import React from "react"
+import { useCartContext } from "../../context/CartContext.js"
 import './style.css'
 
 const Cart = () => {
-  const { list } = useCartContext();
-  console.log(list)
+  const { list } = useCartContext()
+  
   return (
     <>
       {list.map((item, key) => (
         <div key={key}>
-          {item.count} Producto:{item.name}
+          {item.count} x {item.title}: $ {item.price}
         </div>
       ))}
     </>
-  );
+  )
 }
-export default Cart;
+export default Cart
