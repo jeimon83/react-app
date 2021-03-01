@@ -7,11 +7,8 @@ import { useCartContext } from "../../context/CartContext.js"
 
 const Navbar = () => {
   const { list } = useCartContext()
-  console.log(list)
   
-  const itemsQuantity = () => {
-    return list.reduce((total, obj) => obj.count + total,0)
-  }
+  const itemsQuantity = () => { return list.reduce((total, obj) => obj.count + total,0) }
 
   return (
     <>

@@ -19,22 +19,9 @@ const ItemDetail = () => {
   const { productsAdd } = useCartContext();
   const [enable, setEnable] = useState(false);
 
-  const onAdd = () => {
-    console.log("Se agregaron", count, "productos al carrito");
-    productsAdd({ id: item.id, title: item.title, price: item.price, count });
-  };
-  
-  const handleAdd = () => {
-    if (count < item.inventory) {
-      setCount(count + 1)
-    }
-  }
-  
-  const handleSub = () => { 
-    if (count > 1) {
-      setCount(count - 1)
-    }
-  }
+  const onAdd = () => productsAdd({ id: item.id, title: item.title, price: item.price, img: item.img, count })  
+  const handleAdd = () => (count < item.inventory) ? setCount(count + 1) : null  
+  const handleSub = () => (count > 1) ? setCount(count - 1) : null
 
   const enableBuyButton = () => { 
     setEnable(true)

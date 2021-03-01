@@ -9,10 +9,15 @@ const Item = ({product}) => {
   const count = 1
   const { productsAdd } = useCartContext();
 
-  const onAdd = () => {
-    console.log("Se agregaron", count, "productos al carrito");
-    productsAdd({ id: product.id, title: product.title, count });
-  };
+  const onAdd = () => productsAdd(
+    { 
+      id: product.id, 
+      title: product.title, 
+      price: product.price, 
+      img: product.img,
+      stock: product.inventory,
+      count 
+    })
 
   return (
     <Card className="card">
