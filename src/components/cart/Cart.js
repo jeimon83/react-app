@@ -37,7 +37,11 @@ const Cart = () => {
           <button onClick={() => removeAll(item.id)}>x</button>
         </div>
       ))}
-      <div>{total_items()} items - Total ${total_price()}</div>
+      {(total_items() > 0) ?
+        <div>{total_items()} items - Total ${total_price()}</div>
+        :
+        <div>The cart is empty</div>
+      }
     </>
   )
 }
