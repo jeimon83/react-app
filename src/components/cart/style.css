@@ -1,0 +1,26 @@
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 3.5fr 0.5fr 0.5fr 0.5fr 2fr;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 80px;
+  text-align: center;
+}
+.cart-image{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 80px;
+  width: 40%;
+  height: auto;
+}
+.details{
+  text-align: left;
+  font-size: 24px;
+  padding-top: 40px;
+}
+.btn-x{
+  padding-top: 35px;
+}
+.MuiButton-root {
+  border-radius: 8px;
+} 

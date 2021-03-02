@@ -1,6 +1,7 @@
 import React from "react"
 import { useCartContext } from "../../context/CartContext.js"
 import productList from '../../mocks/productList'
+import Button from '@material-ui/core/Button';
 import './style.css'
 
 const Cart = () => {
@@ -30,11 +31,22 @@ const Cart = () => {
   return (
     <>
       {list.map((item, key) => (
-        <div key={key}>
-          {item.count} x {item.title}: $ {item.price * item.count}
-          <button onClick={() => addOne(item.id, item.count) }>+</button>
-          <button onClick={() => removeOne(item.id, item.count) }>-</button>
-          <button onClick={() => removeAll(item.id)}>x</button>
+        <div key={key} className="grid">
+          <div></div>
+          <div><img className="cart-image" src={item.img} /></div>
+          <div className="details">
+            {item.count} x {item.title}: $ {item.price * item.count}
+          </div>
+          <div className="btn-x" >
+            <Button variant="outlined" color="primary" disableElevation onClick={() => addOne(item.id, item.count) }>+</Button>
+          </div>
+          <div className="btn-x" >
+            <Button variant="outlined" color="secondary" disableElevation onClick={() => removeOne(item.id, item.count) }>-</Button>
+          </div>
+          <div className="btn-x" >
+            <Button variant="outlined" disableElevation onClick={() => removeAll(item.id)}>x</Button>
+          </div>
+          <div></div>
         </div>
       ))}
       {(total_items() > 0) ?

@@ -4,8 +4,9 @@
 .img-container {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: auto;
-  height:80%;
+  max-width: 140px;
+  width: 70%;
+  height: auto;
 }
 .col {
   text-align: center;

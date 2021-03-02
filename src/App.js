@@ -1,5 +1,4 @@
 import React from 'react'
-//import 'bootstrap/dist/css/bootstrap.min.css'
 import Routes from './routes/index.js'
 import { CartProvider } from "./context/CartContext"
 
