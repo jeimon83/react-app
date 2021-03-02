@@ -5,7 +5,6 @@ import { useCartContext } from "../../context/CartContext.js";
 import './style.css'
 
 const Item = ({product}) => {
-
   const count = 1
   const { productsAdd } = useCartContext();
 
@@ -32,9 +31,9 @@ const Item = ({product}) => {
         </Button>
       </Link>
       <div className="add-cart">
-      <Button variant="contained" color="secondary" disableElevation onClick={onAdd}>
-        Add to Cart
-      </Button>
+        <Button variant="contained" color="secondary" disableElevation onClick={onAdd}>
+          Add to Cart
+        </Button>
       </div>
     </Card>
   )

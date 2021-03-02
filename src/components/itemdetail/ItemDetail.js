@@ -1,11 +1,10 @@
 import {Container, Row, Col} from 'react-bootstrap'
-import { useEffect, useState } from "react"
-import { useParams, useLocation } from 'react-router-dom'
+import { useState } from "react"
+import { useLocation } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import AddIcon    from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
-import productList from '../../mocks/productList'
 import RelatedProducts from '../relatedproducts/RelatedProducts'
 import { useCartContext } from "../../context/CartContext.js";
 import { Link } from 'react-router-dom'
@@ -13,32 +12,20 @@ import './style.css'
 
 const ItemDetail = () => {
   const location = useLocation();
-  const [item, setItem] = useState([])
-  const { handle } = useParams()
+  const product = location.state
   const [count, setCount] = useState(1)
   const { productsAdd } = useCartContext();
   const [enable, setEnable] = useState(false);
 
-  const onAdd = () => productsAdd({ id: item.id, title: item.title, price: item.price, img: item.img, count })  
-  const handleAdd = () => (count < item.inventory) ? setCount(count + 1) : null  
+  const onAdd = () => productsAdd({ id: product.id, title: product.title, price: product.price, img: product.img, count })  
+  const handleAdd = () => (count < product.inventory) ? setCount(count + 1) : null  
   const handleSub = () => (count > 1) ? setCount(count - 1) : null
 
   const enableBuyButton = () => { 
     setEnable(true)
     onAdd()
   }
-
-  useEffect(() => {
-    const product = location.state;
-    const myPromise = new Promise((resolve) => {
-      const item = productList.find(element => element.handle === handle)
-      if ( product.id === item.id) {
-        resolve(item)
-      }
-    })
-    myPromise.then((result) => setItem(result))
-  }, [handle, location.state]);
-
+  
   return (
     <>
       <Container fluid className="item-detail">
@@ -47,14 +34,14 @@ const ItemDetail = () => {
           <Col className="col row-height">
           <img
               className='img-container'
-              src={`../${item.img}`}
+              src={`../${product.img}`}
               alt="hola"
             />
           </Col>
           <Col className="title row-height">
-            <p>{item.title}</p>
-            <p>{item.description}</p>
-            <p>$ {item.price}</p>
+            <p>{product.title}</p>
+            <p>{product.description}</p>
+            <p>$ {product.price}</p>
             <IconButton aria-label='sub' onClick = {() => { handleSub() }} >
               <RemoveIcon className='remove' />
             </IconButton>
