@@ -1,5 +1,4 @@
 import React from "react";
-import productList from './../mocks/productList'
 export const CartContext = React.createContext();
 export const useCartContext = () => React.useContext(CartContext);
 
@@ -8,12 +7,11 @@ export const CartProvider = props => {
 
   const productsAdd = item_to_add => {
     const found = list.find(item => item.id === item_to_add.id)
-    const product = productList.find(item => item.id === item_to_add.id)
     if (found) {
       const newCartItem = list.map(item => {
         if (item.id === item_to_add.id) {
           const total = item_to_add.count + item.count
-          if(product.inventory >= total) { return { ...item, count: total } }
+          if(4 >= total) { return { ...item, count: total } }
         }
         return item;
       });
