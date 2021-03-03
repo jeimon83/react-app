@@ -17,7 +17,15 @@ const ItemDetail = () => {
   const { productsAdd } = useCartContext();
   const [enable, setEnable] = useState(false);
 
-  const onAdd = () => productsAdd({ id: product.id, title: product.title, price: product.price, img: product.img, count })  
+  const onAdd = () => productsAdd(
+    { 
+      id:     product.id, 
+      title:  product.title, 
+      price:  product.price, 
+      img:    product.img, 
+      stock:  product.inventory, 
+      count 
+    })  
   const handleAdd = () => (count < product.inventory) ? setCount(count + 1) : null  
   const handleSub = () => (count > 1) ? setCount(count - 1) : null
 

@@ -25,26 +25,26 @@ export const CartProvider = props => {
     }
   }
 
-  const addOneitem = ({item_id, item_count}) => {
-    const newCart = list.map(item => {
-      if (item.id === item_id) { return { ...item, count: item_count + 1 }}
-      return item;
+  const addOneitem = item => {
+    const newCart = list.map(element => {
+      if (element.id === item.id) { return { ...element, count: item.count + 1 }}
+      return element;
     });
     setList(newCart);
     window.sessionStorage.setItem("cart", JSON.stringify(newCart))
   }
 
 
-  const removeOneitem = ({item_id, item_count}) => {
-    if(item_count -1 === 0) {
-      return removeItem({ item_id: item_id })
+  const removeOneitem = item => {
+    if(item.count - 1 === 0) {
+      return removeItem(item)
     }
     else{
-      const newCart = list.map(item => {
-        if (item.id === item_id) {
-          return { ...item, count: item_count - 1 };
+      const newCart = list.map(element => {
+        if (element.id === item.id) {
+          return { ...element, count: item.count - 1 };
         }
-        return item;
+        return element;
       });
       setList(newCart);
       window.sessionStorage.setItem("cart", JSON.stringify(newCart))
@@ -52,19 +52,19 @@ export const CartProvider = props => {
   }
 
 
-  const removeItem = ({item_id}) => {
-    const newCart = list.filter(item=> item.id !== item_id)
+  const removeItem = item => {
+    const newCart = list.filter(element => element.id !== item.id)
     setList(newCart);
     window.sessionStorage.setItem("cart", JSON.stringify(newCart))
   }
 
   const totalPrice = () => {
-    let total = list.reduce((total, product) => total + product.price * product.count, 0).toFixed(2)
+    let total = list.reduce((total, item) => total + item.price * item.count, 0).toFixed(2)
     return total
   }
 
   const totalItems = () => {
-    let total = list.reduce((total, product) => total + product.count, 0)
+    let total = list.reduce((total, item) => total + item.count, 0)
     return total
   }
 

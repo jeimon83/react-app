@@ -3,7 +3,7 @@
   grid-template-columns: 2fr 1.5fr 3.5fr 0.5fr 0.5fr 0.5fr 2fr;
   padding-left: 60px;
   padding-right: 60px;
-  padding-top: 80px;
+  padding-bottom: 20px;
   text-align: center;
 }
 .cart-image{
@@ -23,4 +23,9 @@
 }
 .MuiButton-root {
   border-radius: 8px;
-} 
+}
+.info {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+}

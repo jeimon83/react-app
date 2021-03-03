@@ -1,6 +1,5 @@
 import React from "react"
 import { useCartContext } from "../../context/CartContext.js"
-import productList from '../../mocks/productList'
 import Button from '@material-ui/core/Button';
 import './style.css'
 
@@ -14,16 +13,15 @@ const Cart = () => {
     totalItems
    } = useCartContext();
   
-  const addOne = (id, count) => {
-    const item = productList.find((item) => item.id === id)
-    if (item.inventory === count) {
+  const addOne = item => {
+    if (item.stock === item.count) {
 
     }else{
-      addOneitem({ item_id: id, item_count: count })
+      addOneitem(item)
     }
   }
-  const removeOne = (id, count) => removeOneitem({ item_id: id, item_count: count })
-  const removeAll = (id) => removeItem({ item_id: id })
+  const removeOne = item => removeOneitem(item)
+  const removeAll = item => removeItem(item)
 
   const total_price = () => totalPrice()
   const total_items = () => totalItems()
@@ -33,27 +31,29 @@ const Cart = () => {
       {list.map((item, key) => (
         <div key={key} className="grid">
           <div></div>
-          <div><img className="cart-image" src={item.img} /></div>
+          <div><img className="cart-image" src={item.img} alt="."/></div>
           <div className="details">
             {item.count} x {item.title}: $ {item.price * item.count}
           </div>
           <div className="btn-x" >
-            <Button variant="outlined" color="primary" disableElevation onClick={() => addOne(item.id, item.count) }>+</Button>
+            <Button variant="outlined" color="primary" disableElevation onClick={() => addOne(item) }>+</Button>
           </div>
           <div className="btn-x" >
-            <Button variant="outlined" color="secondary" disableElevation onClick={() => removeOne(item.id, item.count) }>-</Button>
+            <Button variant="outlined" color="secondary" disableElevation onClick={() => removeOne(item) }>-</Button>
           </div>
           <div className="btn-x" >
-            <Button variant="outlined" disableElevation onClick={() => removeAll(item.id)}>x</Button>
+            <Button variant="outlined" disableElevation onClick={() => removeAll(item)}>x</Button>
           </div>
           <div></div>
         </div>
       ))}
-      {(total_items() > 0) ?
-        <div>{total_items()} items - Total ${total_price()}</div>
-        :
-        <div>The cart is empty</div>
-      }
+      <div className="info">
+        {(total_items() > 0) ?
+          <div>Total ${total_price()}</div>
+          :
+          <div>The cart is empty</div>
+        }
+      </div>
     </>
   )
 }
