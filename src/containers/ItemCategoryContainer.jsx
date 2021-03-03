@@ -16,7 +16,6 @@ const ItemCategoryContainer = () => {
          return { ...element.data(), id: element.id } 
       })
       setFirebaseProducts(FirebaseProducts)
-      console.log(FirebaseProducts)
     })
   }, [category]);
 

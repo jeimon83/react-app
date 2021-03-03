@@ -13,7 +13,6 @@ const ItemDetailContainer = () => {
          return { ...element.data(), id: element.id } 
       })
       setFirebaseProducts(FirebaseProducts)
-      console.log(FirebaseProducts)
     })
   },[])
 
