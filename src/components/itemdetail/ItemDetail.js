@@ -15,6 +15,7 @@ const ItemDetail = () => {
   const product = location.state
   const [count, setCount] = useState(1)
   const { productsAdd } = useCartContext();
+  const [enableCart, setEnableCart] = useState(true);
   const [enable, setEnable] = useState(false);
 
   const onAdd = () => productsAdd(
@@ -29,7 +30,8 @@ const ItemDetail = () => {
   const handleAdd = () => (count < product.inventory) ? setCount(count + 1) : null  
   const handleSub = () => (count > 1) ? setCount(count - 1) : null
 
-  const enableBuyButton = () => { 
+  const enableBuyButton = () => {
+    setEnableCart(false) 
     setEnable(true)
     onAdd()
   }
@@ -57,11 +59,15 @@ const ItemDetail = () => {
             <IconButton aria-label='add' onClick={() => { handleAdd() }} >
               <AddIcon className='add' />
             </IconButton>
-            <p className="addcart">
-            <Button variant="contained" color="secondary" disableElevation onClick={enableBuyButton} >
-              Add to cart
-            </Button>
-            </p>
+            { enableCart ?
+              <p className="addcart">
+              <Button variant="contained" color="secondary" disableElevation onClick={enableBuyButton} >
+                Add to cart
+              </Button>
+              </p>
+              :
+              null
+            }
              { enable ?
               <Link to="/cart">
                 <Button variant="contained" color="primary" disableElevation >

@@ -7,11 +7,12 @@ export const CartProvider = props => {
 
   const productsAdd = item_to_add => {
     const found = list.find(item => item.id === item_to_add.id)
+    console.log(found)
     if (found) {
       const newCartItem = list.map(item => {
         if (item.id === item_to_add.id) {
           const total = item_to_add.count + item.count
-          if(4 >= total) { return { ...item, count: total } }
+          if(item.stock >= total) { return { ...item, count: total } }
         }
         return item;
       });
@@ -31,7 +32,6 @@ export const CartProvider = props => {
     setList(newCart);
     window.sessionStorage.setItem("cart", JSON.stringify(newCart))
   }
-
 
   const removeOneitem = item => {
     if(item.count - 1 === 0) {
