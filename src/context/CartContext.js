@@ -7,7 +7,6 @@ export const CartProvider = props => {
 
   const productsAdd = item_to_add => {
     const found = list.find(item => item.id === item_to_add.id)
-    console.log(found)
     if (found) {
       const newCartItem = list.map(item => {
         if (item.id === item_to_add.id) {
