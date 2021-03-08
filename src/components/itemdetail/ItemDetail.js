@@ -69,11 +69,12 @@ const ItemDetail = () => {
               null
             }
              { enable ?
+             <p className="addcart">
               <Link to="/cart">
                 <Button variant="contained" color="primary" disableElevation >
                   Finish Buy
                 </Button>
-              </Link>
+              </Link></p>
               :
               null
             }

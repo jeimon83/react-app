@@ -31,9 +31,15 @@ const Item = ({product}) => {
         </Button>
       </Link>
       <div className="add-cart">
-        <Button variant="contained" color="secondary" disableElevation onClick={onAdd}>
-          Add to Cart
-        </Button>
+        { product.inventory > 0 ?
+          <Button variant="contained" color="secondary" disableElevation onClick={onAdd}>
+            Add to Cart
+          </Button>
+          :
+          <Button variant="contained" color="secondary" disableElevation disabled>
+          Not available
+          </Button>
+        }
       </div>
     </Card>
   )
