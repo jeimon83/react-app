@@ -1,8 +1,8 @@
 .header-grid {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 0.5fr;
-  border-bottom: 3px solid;
+  border-bottom: 2px solid;
 }
 .cart {
-  color: black !important
+  margin-left: 40px;
 }

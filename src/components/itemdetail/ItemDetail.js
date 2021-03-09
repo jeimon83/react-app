@@ -71,7 +71,7 @@ const ItemDetail = () => {
              { enable ?
              <p className="addcart">
               <Link to="/cart">
-                <Button variant="contained" color="primary" disableElevation >
+                <Button variant="outlined" color="secondary">
                   Finish Buy
                 </Button>
               </Link></p>

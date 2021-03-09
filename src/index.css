@@ -21,7 +21,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   font-size: 18px;
-  font-weight: 500
+  font-weight: 500;
+  margin-left: 60px;
 }
 .li-login {
   list-style: none;
