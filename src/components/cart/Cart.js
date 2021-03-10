@@ -39,6 +39,11 @@ const Cart = () => {
    const [name, setName] = useState('')
    const [email, setEmail] = useState('')
    const [phone, setPhone] = useState('')
+   const [address, setAddress] = useState('')
+   const [zip, setZip] = useState('')
+   const [city, setCity] = useState('')
+   const [province, setProvince] = useState('')
+   const [comments, setComments] = useState('')
 
   const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0)
@@ -140,15 +145,36 @@ const Cart = () => {
             Phone:
             <input type="text" name="Phone" onChange={(e) => setPhone(e.target.value)} />
           </label>
-          <input type="submit" value="Submit" />
-        </form>
+          <label>
+            Address:
+            <input type="text" name="address" onChange={(e) => setAddress(e.target.value)} />
+          </label>
+          <label>
+            Zip / Postal Code:
+            <input type="text" name="zip" onChange={(e) => setZip(e.target.value)} />
+          </label>
+          <label>
+            City:
+            <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
+          </label>
+          <label>
+            Province:
+            <input type="text" name="province" onChange={(e) => setProvince(e.target.value)} />
+          </label>
+          <label>
+            Comments:
+            <input type="text" name="comments" onChange={(e) => setComments(e.target.value)} />
+          </label>
+         </form>
       : 
       null 
       }
       { activeStep === 2 ?
+      <div>
+        <p>Shipping Information</p>
         <form>
           <label>
-            Name:
+            Full Name:
             <input type="text" name="name" onChange={(e) => setName(e.target.value)} />
           </label>
           <label>
@@ -157,10 +183,26 @@ const Cart = () => {
           </label>
           <label>
             Phone:
-            <input type="text" name="Phone" onChange={(e) => setPhone(e.target.value)} />
+            <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)} />
           </label>
-          <input type="submit" value="Submit" />
+          <label>
+            Address:
+            <input type="text" name="address" onChange={(e) => setAddress(e.target.value)} />
+          </label>
+          <label>
+            Zip / Postal Code:
+            <input type="text" name="zip" onChange={(e) => setZip(e.target.value)} />
+          </label>
+          <label>
+            City:
+            <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
+          </label>
+          <label>
+            Province:
+            <input type="text" name="province" onChange={(e) => setProvince(e.target.value)} />
+          </label>
         </form>
+      </div>
       : 
       null 
       }
