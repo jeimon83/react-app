@@ -30,3 +30,19 @@
   font-weight: 600;
   margin-bottom: 20px;
 }
+.form-container {
+  margin-top: 20px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border: solid 3px blue
+}
+.form-shipping{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.form-payment{
+  padding-left: 10%;
+  padding-right: 10%;
+}

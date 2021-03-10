@@ -7,6 +7,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 import './style.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +45,13 @@ const Cart = () => {
    const [zip, setZip] = useState('')
    const [city, setCity] = useState('')
    const [province, setProvince] = useState('')
-   const [comments, setComments] = useState('')
+   const [cardName, setCardName] = useState('')
+   const [cardnumbers, setCardNumbers] = useState('')
+   const [cardExpire, setCardExpire] = useState('')
+   const [cardCode, setCardCode] = useState('')
+   const [docType, setDocType] = useState('')
+   const [docNumber, setDocNumber] = useState('')
+   console.log(docType)
 
   const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0)
@@ -65,19 +73,11 @@ const Cart = () => {
   const total_price = () => totalPrice()
   const total_items = () => totalItems()
 
-  const finishBuy = () => {
+  const createOrder = () => {
     let newDate = new Date()
     let newOrder = { 
-      buyer: {
-        //name: buyer_name,
-        //email: email,
-        //phone: phone
-      },
-      items: 
-        [...list],
-        date: newDate,
-        total: total_price()
-    }
+      buyer: { name: name, email: email, phone: phone, address: address, zip: zip, city: city, province: province },
+      items: [...list], date: newDate, total: total_price() }
 
     const fsDB = getFirestore()
     const orderCollection = fsDB.collection('orders')
@@ -132,92 +132,94 @@ const Cart = () => {
       null 
       }
       { activeStep === 1 ?
-        <form>
-          <label>
-            Name:
-            <input type="text" name="name" onChange={(e) => setName(e.target.value)} />
-          </label>
-          <label>
-            Email:
-            <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <label>
-            Phone:
-            <input type="text" name="Phone" onChange={(e) => setPhone(e.target.value)} />
-          </label>
-          <label>
-            Address:
-            <input type="text" name="address" onChange={(e) => setAddress(e.target.value)} />
-          </label>
-          <label>
-            Zip / Postal Code:
-            <input type="text" name="zip" onChange={(e) => setZip(e.target.value)} />
-          </label>
-          <label>
-            City:
-            <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
-          </label>
-          <label>
-            Province:
-            <input type="text" name="province" onChange={(e) => setProvince(e.target.value)} />
-          </label>
-          <label>
-            Comments:
-            <input type="text" name="comments" onChange={(e) => setComments(e.target.value)} />
-          </label>
-         </form>
+      <div className="form-container">
+        <Form className="form-shipping">
+          <Form.Row>
+            <Form.Group as={Col} controlId="formName">
+              <Form.Label>Your Name</Form.Label>
+              <Form.Control type="name" placeholder="Enter your full name" onChange={(e) => setName(e.target.value)}/>
+            </Form.Group>
+            <Form.Group as={Col} controlId="formEmail">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)}/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Group controlId="formAddress">
+            <Form.Label>Address</Form.Label>
+            <Form.Control type="address" placeholder="Enter your address" onChange={(e) => setAddress(e.target.value)}/>
+          </Form.Group>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formZip">
+              <Form.Label>Zip Code</Form.Label>
+              <Form.Control type="zip" placeholder="Enter your zip code" onChange={(e) => setZip(e.target.value)}/>
+            </Form.Group>
+            <Form.Group as={Col} controlId="formPhone">
+              <Form.Label>Phone</Form.Label>
+              <Form.Control type="phone" placeholder="Enter your phone" onChange={(e) => setPhone(e.target.value)}/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+          <Form.Group as={Col} controlId="formCity">
+            <Form.Label>City</Form.Label>
+            <Form.Control type="city" placeholder="Enter your city" onChange={(e) => setCity(e.target.value)}/>
+          </Form.Group>
+          <Form.Group as={Col} controlId="formProvince">
+            <Form.Label>Province</Form.Label>
+            <Form.Control type="province" placeholder="Enter your province" onChange={(e) => setProvince(e.target.value)}/>
+          </Form.Group>
+          </Form.Row>
+        </Form>
+      </div>
       : 
       null 
       }
       { activeStep === 2 ?
-      <div>
-        <p>Shipping Information</p>
-        <form>
-          <label>
-            Full Name:
-            <input type="text" name="name" onChange={(e) => setName(e.target.value)} />
-          </label>
-          <label>
-            Email:
-            <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <label>
-            Phone:
-            <input type="text" name="phone" onChange={(e) => setPhone(e.target.value)} />
-          </label>
-          <label>
-            Address:
-            <input type="text" name="address" onChange={(e) => setAddress(e.target.value)} />
-          </label>
-          <label>
-            Zip / Postal Code:
-            <input type="text" name="zip" onChange={(e) => setZip(e.target.value)} />
-          </label>
-          <label>
-            City:
-            <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
-          </label>
-          <label>
-            Province:
-            <input type="text" name="province" onChange={(e) => setProvince(e.target.value)} />
-          </label>
-        </form>
-      </div>
+      <div className="form-container">
+      <Form className="form-payment">
+        <Form.Group controlId="cardName">
+          <Form.Label>Card Name</Form.Label>
+          <Form.Control type="card_name" placeholder="Enter card name" onChange={(e) => setCardName(e.target.value)}/>
+        </Form.Group>
+        <Form.Group controlId="cardNumbers">
+          <Form.Label>Card Numbers</Form.Label>
+          <Form.Control type="card_numbers" placeholder="Enter card numbers" onChange={(e) => setCardNumbers(e.target.value)}/>
+        </Form.Group>
+        <Form.Row>
+          <Form.Group as={Col} controlId="cardExpire">
+            <Form.Label>Card Expiration</Form.Label>
+            <Form.Control type="card_expiration" placeholder="Enter card expiration mm/YY" onChange={(e) => setCardExpire(e.target.value)}/>
+          </Form.Group>
+          <Form.Group as={Col} controlId="cardCode">
+            <Form.Label>Card Code</Form.Label>
+            <Form.Control type="card_code" placeholder="Enter card code" onChange={(e) => setCardCode(e.target.value)}/>
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col} controlId="docType">
+          <Form.Label>Doc. Type</Form.Label>
+            <Form.Control as="select" className="mr-sm-2" custom onChange={(e) => setDocType(e.target.value)}>
+              <option value="DNI">Choose...</option>
+              <option value="DNI">DNI</option>
+              <option value="LC">LC</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group as={Col} controlId="docNumber">
+            <Form.Label>Identification Number</Form.Label>
+            <Form.Control type="doc_number" placeholder="Enter your identification number" onChange={(e) => setDocNumber(e.target.value)}/>
+          </Form.Group>
+        </Form.Row>
+      </Form>
+    </div>
       : 
       null 
       }
       <div className="info">
       {(total_items() > 0) ?
         <div>
-          <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+          <Button variant="contained" color="secondary" disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
             Back
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            className={classes.button}
-          >
+          <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}>
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
           </Button>
         </div>
