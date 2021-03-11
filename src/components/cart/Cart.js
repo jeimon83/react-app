@@ -5,7 +5,6 @@ import { getFirestore } from '../../firebase'
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Cart Items', 'Shipping', 'Payment', 'Confirm Order']
+  return ['Cart Items', 'Shipping Details', 'Payment Info', 'Confirm Order']
 }
 
 const Cart = () => {
@@ -59,7 +58,6 @@ const Cart = () => {
 
   const handleNext = () => { setActiveStep((prevActiveStep) => prevActiveStep + 1) }
   const handleBack = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1) }
-  const handleReset = () => { setActiveStep(0) }
 
   const addOne = item => {
     if (item.stock == item.count) {
@@ -74,6 +72,7 @@ const Cart = () => {
   const total_items = () => totalItems()
 
   const createOrder = () => {
+    handleNext()
     let newDate = new Date()
     let newOrder = { 
       buyer: { name: name, email: email, phone: phone, address: address, zip: zip, city: city, province: province },
@@ -99,6 +98,7 @@ const Cart = () => {
           );
         })}
       </Stepper>
+      
       { activeStep === 0 ? 
         <div>
           {list.map((item, key) => (
@@ -131,41 +131,42 @@ const Cart = () => {
       : 
       null 
       }
+
       { activeStep === 1 ?
       <div className="form-container">
         <Form className="form-shipping">
           <Form.Row>
             <Form.Group as={Col} controlId="formName">
               <Form.Label>Your Name</Form.Label>
-              <Form.Control type="name" placeholder="Enter your full name" onChange={(e) => setName(e.target.value)}/>
+              <Form.Control type="name" placeholder={ name ? name : "Enter your full name" } onChange={(e) => setName(e.target.value)}/>
             </Form.Group>
             <Form.Group as={Col} controlId="formEmail">
               <Form.Label>Email Address</Form.Label>
-              <Form.Control type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)}/>
+              <Form.Control type="email" placeholder={ email ? email : "Enter your email" } onChange={(e) => setEmail(e.target.value)}/>
             </Form.Group>
           </Form.Row>
           <Form.Group controlId="formAddress">
             <Form.Label>Address</Form.Label>
-            <Form.Control type="address" placeholder="Enter your address" onChange={(e) => setAddress(e.target.value)}/>
+            <Form.Control type="address" placeholder={ address ? address : "Enter your address" } onChange={(e) => setAddress(e.target.value)}/>
           </Form.Group>
           <Form.Row>
             <Form.Group as={Col} controlId="formZip">
               <Form.Label>Zip Code</Form.Label>
-              <Form.Control type="zip" placeholder="Enter your zip code" onChange={(e) => setZip(e.target.value)}/>
+              <Form.Control type="zip" placeholder={ zip ? zip : "Enter your zip code" } onChange={(e) => setZip(e.target.value)}/>
             </Form.Group>
             <Form.Group as={Col} controlId="formPhone">
               <Form.Label>Phone</Form.Label>
-              <Form.Control type="phone" placeholder="Enter your phone" onChange={(e) => setPhone(e.target.value)}/>
+              <Form.Control type="phone" placeholder={ phone ? phone : "Enter your phone" } onChange={(e) => setPhone(e.target.value)}/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
           <Form.Group as={Col} controlId="formCity">
             <Form.Label>City</Form.Label>
-            <Form.Control type="city" placeholder="Enter your city" onChange={(e) => setCity(e.target.value)}/>
+            <Form.Control type="city" placeholder={ city ? city : "Enter your city" } onChange={(e) => setCity(e.target.value)}/>
           </Form.Group>
           <Form.Group as={Col} controlId="formProvince">
             <Form.Label>Province</Form.Label>
-            <Form.Control type="province" placeholder="Enter your province" onChange={(e) => setProvince(e.target.value)}/>
+            <Form.Control type="province" placeholder={ province ? province : "Enter your province" } onChange={(e) => setProvince(e.target.value)}/>
           </Form.Group>
           </Form.Row>
         </Form>
@@ -173,87 +174,131 @@ const Cart = () => {
       : 
       null 
       }
+
       { activeStep === 2 ?
-      <div className="form-container">
-      <Form className="form-payment">
-        <Form.Group controlId="cardName">
-          <Form.Label>Card Name</Form.Label>
-          <Form.Control type="card_name" placeholder="Enter card name" onChange={(e) => setCardName(e.target.value)}/>
-        </Form.Group>
-        <Form.Group controlId="cardNumbers">
-          <Form.Label>Card Numbers</Form.Label>
-          <Form.Control type="card_numbers" placeholder="Enter card numbers" onChange={(e) => setCardNumbers(e.target.value)}/>
-        </Form.Group>
-        <Form.Row>
-          <Form.Group as={Col} controlId="cardExpire">
-            <Form.Label>Card Expiration</Form.Label>
-            <Form.Control type="card_expiration" placeholder="Enter card expiration mm/YY" onChange={(e) => setCardExpire(e.target.value)}/>
-          </Form.Group>
-          <Form.Group as={Col} controlId="cardCode">
-            <Form.Label>Card Code</Form.Label>
-            <Form.Control type="card_code" placeholder="Enter card code" onChange={(e) => setCardCode(e.target.value)}/>
-          </Form.Group>
-        </Form.Row>
-        <Form.Row>
-          <Form.Group as={Col} controlId="docType">
-          <Form.Label>Doc. Type</Form.Label>
-            <Form.Control as="select" className="mr-sm-2" custom onChange={(e) => setDocType(e.target.value)}>
-              <option value="DNI">Choose...</option>
-              <option value="DNI">DNI</option>
-              <option value="LC">LC</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} controlId="docNumber">
-            <Form.Label>Identification Number</Form.Label>
-            <Form.Control type="doc_number" placeholder="Enter your identification number" onChange={(e) => setDocNumber(e.target.value)}/>
-          </Form.Group>
-        </Form.Row>
-      </Form>
-    </div>
+        <div className="form-container">
+          <Form className="form-payment">
+            <Form.Group controlId="cardName">
+              <Form.Label>Card Name</Form.Label>
+              <Form.Control type="card_name" placeholder="Enter card name" onChange={(e) => setCardName(e.target.value)}/>
+            </Form.Group>
+            <Form.Group controlId="cardNumbers">
+              <Form.Label>Card Numbers</Form.Label>
+              <Form.Control type="card_numbers" placeholder="Enter card numbers" onChange={(e) => setCardNumbers(e.target.value)}/>
+            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="cardExpire">
+                <Form.Label>Card Expiration</Form.Label>
+                <Form.Control type="card_expiration" placeholder="MM/YY" onChange={(e) => setCardExpire(e.target.value)}/>
+              </Form.Group>
+              <Form.Group as={Col} controlId="cardCode">
+                <Form.Label>Card Code</Form.Label>
+                <Form.Control type="card_code" placeholder="Enter card code" onChange={(e) => setCardCode(e.target.value)}/>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} controlId="docType">
+              <Form.Label>Doc. Type</Form.Label>
+                <Form.Control as="select" className="mr-sm-2" custom onChange={(e) => setDocType(e.target.value)}>
+                  <option value="DNI">Choose...</option>
+                  <option value="DNI">DNI</option>
+                  <option value="LC">LC</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group as={Col} controlId="docNumber">
+                <Form.Label>Identification Number</Form.Label>
+                <Form.Control type="doc_number" placeholder="Enter your identification number" onChange={(e) => setDocNumber(e.target.value)}/>
+              </Form.Group>
+            </Form.Row>
+          </Form>
+        </div>
       : 
       null 
       }
+
+      { activeStep === 3 ?
+        <div className="order-container">
+          <Form className="order-info">
+            <Form.Row>
+              <Form.Group as={Col}>
+              <div className="title">SHIPPING DETAILS</div>         
+              <Form.Control type="name_phone" placeholder={ name + " - Phone " + phone  } className="strong"/>
+              <Form.Control type="complete_address" placeholder={ address + " - CP " + zip + " - " + city + ", " + province } className="strong"/>
+              </Form.Group>
+              <Form.Group as={Col}>
+              <div className="title">PAYMENT INFO</div>
+              <Form.Control type="card_numbers" placeholder={ "Card Number " + cardnumbers } className="strong"/>
+              <Form.Control type="total_amount" placeholder={ "Total Amount: $ " + totalPrice() } className="strong"/>
+              </Form.Group>
+            </Form.Row>
+          </Form>
+        </div>
+      :
+      null
+      }
+
       <div className="info">
-      {(total_items() > 0) ?
+      { activeStep === 0 ?
         <div>
-          <Button variant="contained" color="secondary" disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-            Back
-          </Button>
           <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}>
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            Next to Shipping
           </Button>
         </div>
       :
       null
       }
       </div>
-      <div>
-        {activeStep === steps.length ?
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - finished!
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
+
+
+      <div className="info">
+      { activeStep === 1 ?
+        <div>
+          <Button variant="contained" color="secondary" onClick={handleBack} className={classes.button}>
+            Back to Cart Items
             </Button>
-          </div>
-        :
-        null
-        }
+          <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}>
+            Next to Payment Info
+          </Button>
+        </div>
+      :
+      null
+      }
       </div>
+
+
+      <div className="info">
+      { activeStep === 2 ?
+        <div>
+          <Button variant="contained" color="secondary" onClick={handleBack} className={classes.button}>
+            Back to Shipping Details
+          </Button>
+          <Button variant="contained" color="primary" onClick={createOrder} className={classes.button}>
+            Next to Order Confirmation
+          </Button>
+        </div>
+      :
+      null
+      }
+      </div>
+
+      <div className="info">
+      { activeStep === 3 ?
+        <div>
+          <Button variant="contained" color="secondary" onClick={handleBack} className={classes.button}>
+            Back to Payment Info
+          </Button>
+          <Button variant="contained" color="primary" onClick={createOrder} className={classes.button}>
+            Click to Confirm & Pay Order!
+          </Button>
+        </div>
+      :
+      null
+      }
+      </div>
+
+
+
     </>
   )
 }
 export default Cart
-
-//  <button onClick={() => finishBuy()}>Finish Buy</button>
-
-// <div>
-//<input type="text" placeholder="Name"  onChange={(e) => setName(e.target.value)} />
-//<input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-//<input type="text" placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
-//</div>
-
-//const [name, setName] = useState('')
-//const [email, setEmail] = useState('')
-//const [phone, setPhone] = useState('')
