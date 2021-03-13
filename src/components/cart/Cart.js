@@ -24,17 +24,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Cart Items', 'Shipping Details', 'Payment Info', 'Confirm Order']
+  return ['Cart Items', 'Shipping Details', 'Payment', 'Order Confirmed']
 }
 
 const Cart = () => {
-  const { list } = useCartContext()
   const { 
+    list,
     addOneitem,
     removeOneitem,
     removeItem, 
     totalPrice,
-    totalItems
+    totalItems,
+    resetCart
    } = useCartContext()
 
    const [name, setName] = useState('')
@@ -50,6 +51,7 @@ const Cart = () => {
    const [cardCode, setCardCode] = useState('')
    const [docType, setDocType] = useState('')
    const [docNumber, setDocNumber] = useState('')
+   const [orderId, setOrderId] = useState()
    console.log(docType)
 
   const classes = useStyles()
@@ -60,7 +62,8 @@ const Cart = () => {
   const handleBack = () => { setActiveStep((prevActiveStep) => prevActiveStep - 1) }
 
   const addOne = item => {
-    if (item.stock == item.count) {
+    let stock = parseInt(item.stock)
+    if (stock === item.count) {
     }else{
       addOneitem(item)
     }
@@ -76,17 +79,21 @@ const Cart = () => {
     let newDate = new Date()
     let newOrder = { 
       buyer: { name: name, email: email, phone: phone, address: address, zip: zip, city: city, province: province },
-      items: [...list], date: newDate, total: total_price() }
+      items: [...list], date: newDate, total: total_price() 
+    }
 
     const fsDB = getFirestore()
     const orderCollection = fsDB.collection('orders')
     orderCollection.add(newOrder).then((value) => {
-      console.log(value.id) 
+     setOrderId(value.id)
     })
+
+    resetCart(list)
   }
 
   return (
     <>
+    <div className="steps-width">
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -98,6 +105,7 @@ const Cart = () => {
           );
         })}
       </Stepper>
+      </div>
       
       { activeStep === 0 ? 
         <div>
@@ -218,6 +226,8 @@ const Cart = () => {
 
       { activeStep === 3 ?
         <div className="order-container">
+          <h1 style={{"textAlign": "center"}}>Congratulations!</h1>
+          <h2 style={{"textAlign": "center"}}>Order ID: {orderId}</h2>
           <Form className="order-info">
             <Form.Row>
               <Form.Group as={Col}>
@@ -226,7 +236,7 @@ const Cart = () => {
               <Form.Control type="complete_address" placeholder={ address + " - CP " + zip + " - " + city + ", " + province } className="strong"/>
               </Form.Group>
               <Form.Group as={Col}>
-              <div className="title">PAYMENT INFO</div>
+              <div className="title">PAYMENT </div>
               <Form.Control type="card_numbers" placeholder={ "Card Number " + cardnumbers } className="strong"/>
               <Form.Control type="total_amount" placeholder={ "Total Amount: $ " + totalPrice() } className="strong"/>
               </Form.Group>
@@ -257,7 +267,7 @@ const Cart = () => {
             Back to Cart Items
             </Button>
           <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}>
-            Next to Payment Info
+            Next to Payment
           </Button>
         </div>
       :
@@ -270,10 +280,10 @@ const Cart = () => {
       { activeStep === 2 ?
         <div>
           <Button variant="contained" color="secondary" onClick={handleBack} className={classes.button}>
-            Back to Shipping Details
+            Back to Shipping
           </Button>
           <Button variant="contained" color="primary" onClick={createOrder} className={classes.button}>
-            Next to Order Confirmation
+            Finalize Order
           </Button>
         </div>
       :
@@ -284,12 +294,6 @@ const Cart = () => {
       <div className="info">
       { activeStep === 3 ?
         <div>
-          <Button variant="contained" color="secondary" onClick={handleBack} className={classes.button}>
-            Back to Payment Info
-          </Button>
-          <Button variant="contained" color="primary" onClick={createOrder} className={classes.button}>
-            Click to Confirm & Pay Order!
-          </Button>
         </div>
       :
       null

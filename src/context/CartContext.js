@@ -65,6 +65,10 @@ export const CartProvider = props => {
     return total
   }
 
+  const resetCart = () => {
+    setList([])
+  }
+
   return (
     <CartContext.Provider 
     value={{ 
@@ -74,7 +78,8 @@ export const CartProvider = props => {
       removeOneitem,
       removeItem,
       totalPrice,
-      totalItems
+      totalItems,
+      resetCart
       }}
     >
       {props.children}

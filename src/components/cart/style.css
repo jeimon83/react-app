@@ -36,7 +36,8 @@
   padding-bottom: 2%;
   margin-left: 30%;
   margin-right: 30%;
-  border: solid 3px blue
+  border: solid 3px blue;
+  border-radius: 1em/1em;
 }
 .form-shipping{
   padding-left: 10%;
@@ -52,7 +53,8 @@
   padding-bottom: 2%;
   margin-left: 2%;
   margin-right: 2%;
-  border: solid 3px blue
+  border: solid 3px blue;
+  border-radius: 1em/1em;
 }
 .order-info {
   padding-left: 10%;
@@ -64,4 +66,8 @@
 }
 .title{
   text-align: left;
+}
+.steps-width {
+  padding-left: 20%;
+  padding-right: 20%;
 }
