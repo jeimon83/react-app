@@ -4,6 +4,7 @@ export const useCartContext = () => React.useContext(CartContext);
 
 export const CartProvider = props => {
   const [list, setList] = React.useState(() => JSON.parse(window.sessionStorage.getItem("cart")) || [])
+  const [total, setTotal] = React.useState('')
 
   const productsAdd = item_to_add => {
     const found = list.find(item => item.id === item_to_add.id)
@@ -56,13 +57,14 @@ export const CartProvider = props => {
   }
 
   const totalPrice = () => {
-    let total = list.reduce((total, item) => total + item.price * item.count, 0).toFixed(2)
+    let total_sum = list.reduce((total, item) => total + item.price * item.count, 0).toFixed(2)    
+    setTotal(total_sum)
     return total
   }
 
   const totalItems = () => {
-    let total = list.reduce((total, item) => total + item.count, 0)
-    return total
+    let total_items = list.reduce((total, item) => total + item.count, 0)
+    return total_items
   }
 
   const resetCart = () => {

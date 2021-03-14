@@ -74,7 +74,10 @@ const Cart = () => {
   const total_price = () => totalPrice()
   const total_items = () => totalItems()
 
+  const [total, setTotal] = useState('')
+
   const createOrder = () => {
+    setTotal(totalPrice())
     handleNext()
     let newDate = new Date()
     let newOrder = { 
@@ -238,7 +241,7 @@ const Cart = () => {
               <Form.Group as={Col}>
               <div className="title">PAYMENT </div>
               <Form.Control type="card_numbers" placeholder={ "Card Number " + cardnumbers } className="strong"/>
-              <Form.Control type="total_amount" placeholder={ "Total Amount: $ " + totalPrice() } className="strong"/>
+              <Form.Control type="total_amount" placeholder={ "Total Amount: $ " + total } className="strong"/>
               </Form.Group>
             </Form.Row>
           </Form>
