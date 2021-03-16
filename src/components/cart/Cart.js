@@ -52,7 +52,7 @@ const Cart = () => {
    const [docType, setDocType] = useState('')
    const [docNumber, setDocNumber] = useState('')
    const [orderId, setOrderId] = useState()
-   console.log(docType)
+   console.log(cardName + cardExpire + cardCode + docType + docNumber)
 
   const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0)
